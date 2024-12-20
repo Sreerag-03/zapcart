@@ -4,15 +4,15 @@ import 'package:zapcart/common/helper/navigator/app_navigator.dart';
 import 'package:zapcart/common/widgets/appbar/app_bar.dart';
 import 'package:zapcart/common/widgets/button/basic_app_button.dart';
 import 'package:zapcart/presentation/auth/pages/enter_password.dart';
-import 'package:zapcart/presentation/auth/pages/signup.dart';
+import 'package:zapcart/presentation/auth/pages/forgot_password.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(hideBack: true,),
+      appBar: const BasicAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -21,7 +21,15 @@ class SigninPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _signInText(context),
+            _createAccountText(context),
+            const SizedBox(
+              height: 20,
+            ),
+            _firstNameTextField(context),
+            const SizedBox(
+              height: 20,
+            ),
+            _lastNameTextField(context),
             const SizedBox(
               height: 20,
             ),
@@ -29,20 +37,24 @@ class SigninPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            _passwordTextField(context),
+            const SizedBox(
+              height: 20,
+            ),
             _continueButton(context),
             const SizedBox(
               height: 20,
             ),
-            _createAccountText(context),
+            _forgotPasswordText(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _signInText(BuildContext context) {
+  Widget _createAccountText(BuildContext context) {
     return const Text(
-      "Sign in",
+      "Create Account",
       style: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold,
@@ -56,6 +68,24 @@ class SigninPage extends StatelessWidget {
     );
   }
 
+  Widget _firstNameTextField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(hintText: "Firstname"),
+    );
+  }
+
+  Widget _lastNameTextField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(hintText: "Lastname"),
+    );
+  }
+
+  Widget _passwordTextField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(hintText: "Password"),
+    );
+  }
+
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
       onPressed: () {
@@ -65,15 +95,15 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _createAccountText(BuildContext context) {
+  Widget _forgotPasswordText(BuildContext context) {
     return RichText(
         text: TextSpan(
       children: [
-        const TextSpan(text: "Don't have an account? "),
+        const TextSpan(text: "Forgot Password? "),
         TextSpan(
-            text: "Create One",
+            text: "Reset",
             recognizer: TapGestureRecognizer()..onTap = () {
-              AppNavigator.push(context, const SignupPage());
+              AppNavigator.push(context,const ForgotPassword());
             },
             style: const TextStyle(fontWeight: FontWeight.bold))
       ],

@@ -4,15 +4,14 @@ import 'package:zapcart/common/helper/navigator/app_navigator.dart';
 import 'package:zapcart/common/widgets/appbar/app_bar.dart';
 import 'package:zapcart/common/widgets/button/basic_app_button.dart';
 import 'package:zapcart/presentation/auth/pages/enter_password.dart';
-import 'package:zapcart/presentation/auth/pages/signup.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class ForgotPassword extends StatelessWidget {
+  const ForgotPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(hideBack: true,),
+      appBar: const BasicAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -21,7 +20,7 @@ class SigninPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _signInText(context),
+            _forgotPasswordText(context),
             const SizedBox(
               height: 20,
             ),
@@ -33,16 +32,15 @@ class SigninPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            _createAccountText(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _signInText(BuildContext context) {
+  Widget _forgotPasswordText(BuildContext context) {
     return const Text(
-      "Sign in",
+      "Forgot Password",
       style: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold,
@@ -52,7 +50,7 @@ class SigninPage extends StatelessWidget {
 
   Widget _emailTextField(BuildContext context) {
     return const TextField(
-      decoration: InputDecoration(hintText: "Email Address"),
+      decoration: InputDecoration(hintText: "Enter Email address"),
     );
   }
 
@@ -65,18 +63,5 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _createAccountText(BuildContext context) {
-    return RichText(
-        text: TextSpan(
-      children: [
-        const TextSpan(text: "Don't have an account? "),
-        TextSpan(
-            text: "Create One",
-            recognizer: TapGestureRecognizer()..onTap = () {
-              AppNavigator.push(context, const SignupPage());
-            },
-            style: const TextStyle(fontWeight: FontWeight.bold))
-      ],
-    ));
-  }
+  
 }
