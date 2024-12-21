@@ -6,7 +6,7 @@ import 'package:zapcart/firebase_options.dart';
 import 'package:zapcart/presentation/splash/bloc/splash_cubit.dart';
 import 'package:zapcart/presentation/splash/pages/splash.dart';
 
-void main() async{
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
