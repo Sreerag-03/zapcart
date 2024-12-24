@@ -3,17 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:zapcart/common/helper/navigator/app_navigator.dart';
 import 'package:zapcart/common/widgets/appbar/app_bar.dart';
 import 'package:zapcart/common/widgets/button/basic_app_button.dart';
-import 'package:zapcart/presentation/auth/pages/enter_password.dart';
+import 'package:zapcart/data/auth/models/user_creation_req.dart';
 import 'package:zapcart/presentation/auth/pages/forgot_password.dart';
+import 'package:zapcart/presentation/auth/pages/gender_and_age_selection.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+  SignupPage({super.key});
+
+  final TextEditingController _firstNameCon = TextEditingController();
+  final TextEditingController _lastNameCon = TextEditingController();
+  final TextEditingController _emailCon = TextEditingController();
+  final TextEditingController _passwordCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BasicAppbar(),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 40,
@@ -89,7 +95,17 @@ class SignupPage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
+        AppNavigator.push(
+          context,
+          GenderAndAgeSelectionPage(
+            userCreationReq: UserCreationReq(
+              firstName: _firstNameCon.text,
+              email: _emailCon.text, 
+              lastName: _lastNameCon.text,
+              password: _passwordCon.text
+            ),
+          )
+        );
       },
       title: "Continue",
     );

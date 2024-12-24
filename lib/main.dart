@@ -5,12 +5,14 @@ import 'package:zapcart/core/configs/theme/app_theme.dart';
 import 'package:zapcart/firebase_options.dart';
 import 'package:zapcart/presentation/splash/bloc/splash_cubit.dart';
 import 'package:zapcart/presentation/splash/pages/splash.dart';
+import 'package:zapcart/service_locator.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  await initializeDependencies();
   runApp(const MyApp());
 }
 

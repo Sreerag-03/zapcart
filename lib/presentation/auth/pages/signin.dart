@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:zapcart/common/helper/navigator/app_navigator.dart';
 import 'package:zapcart/common/widgets/appbar/app_bar.dart';
 import 'package:zapcart/common/widgets/button/basic_app_button.dart';
+import 'package:zapcart/data/auth/models/user_signin_req.dart';
 import 'package:zapcart/presentation/auth/pages/enter_password.dart';
 import 'package:zapcart/presentation/auth/pages/signup.dart';
 
 class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+  SigninPage({super.key});
+
+  final TextEditingController _emailCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(hideBack: true,),
+      appBar: const BasicAppbar(
+        hideBack: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -59,7 +64,13 @@ class SigninPage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
+        AppNavigator.push(
+            context,
+            EnterPasswordPage(
+              signinReq: UserSigninReq(
+                email: _emailCon.text,
+              ),
+            ));
       },
       title: "Continue",
     );
@@ -72,9 +83,10 @@ class SigninPage extends StatelessWidget {
         const TextSpan(text: "Don't have an account? "),
         TextSpan(
             text: "Create One",
-            recognizer: TapGestureRecognizer()..onTap = () {
-              AppNavigator.push(context, const SignupPage());
-            },
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                AppNavigator.push(context, SignupPage());
+              },
             style: const TextStyle(fontWeight: FontWeight.bold))
       ],
     ));
